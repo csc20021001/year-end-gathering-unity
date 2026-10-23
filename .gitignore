@@ -1,0 +1,16 @@
+Library/
+Temp/
+Obj/
+Logs/
+UserSettings/
+.vs/
+*.csproj
+*.sln
+Build/
+Builds/
+.idea/
+.env
+.env.*
+!.env.example
+*.pfx
+*.keystore
