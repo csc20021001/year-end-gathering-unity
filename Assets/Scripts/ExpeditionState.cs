@@ -4,7 +4,7 @@ namespace YearEnd
 {
     public enum Relic { Plank, Leaf, Rice, Wine }
     public enum Outcome { Ready, Playing, Won, Lost }
-    // Pure game rules, independent of rendering and scene loading.
+    public enum HiddenRelic { FinePlank, VeinedLeaf, PerfectRice, MoonWine }
     [Serializable]
     public sealed class ExpeditionState
     {
@@ -13,14 +13,22 @@ namespace YearEnd
         public float Remaining { get; private set; } = Duration;
         public int Hp { get; private set; } = 100;
         public int Mask { get; private set; }
+        public int HiddenMask { get; private set; }
         public bool Paused { get; private set; }
         public float Immunity { get; private set; }
         public Outcome Status { get; private set; } = Outcome.Ready;
         public int Count { get { int c = 0; for (int i = 0; i < 4; i++) if ((Mask & (1 << i)) != 0) c++; return c; } }
         public int Score => Count * 100 + (int)Math.Floor(Remaining) * 10 + Hp * 5;
         public bool Has(Relic r) => (Mask & (1 << (int)r)) != 0;
+        public bool HasHidden(HiddenRelic r) => (HiddenMask & (1 << (int)r)) != 0;
+        public bool CollectHidden(HiddenRelic r)
+        {
+            if (!Active || HasHidden(r)) return false;
+            HiddenMask |= 1 << (int)r;
+            return true;
+        }
         public bool Active => Status == Outcome.Playing && !Paused;
-        public void Start() { Remaining = Duration; Hp = 100; Mask = 0; Paused = false; Immunity = 0; Status = Outcome.Playing; }
+        public void Start() { Remaining = Duration; Hp = 100; Mask = 0; HiddenMask = 0; Paused = false; Immunity = 0; Status = Outcome.Playing; }
         public void SetPaused(bool value) { if (Status == Outcome.Playing) Paused = value; }
         public void Tick(float dt)
         {

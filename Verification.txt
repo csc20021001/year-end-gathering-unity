@@ -1,4 +1,0 @@
-PASS: 42 assertions
-Unity 6000.6.2f1
-Rules, collision, traversability, patrol routes and generated art verified.
-Windows x64 build succeeded; errors=0; warnings=0

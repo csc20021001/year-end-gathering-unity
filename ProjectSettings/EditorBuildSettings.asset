@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Exhibition.unity
     guid: b8db502815e00774084ba591e641d948
+  - enabled: 1
+    path: Assets/Scenes/BananaGarden.unity
+    guid: bb84ba668b5d478db3c0a99159b4bfc0
+  - enabled: 1
+    path: Assets/Scenes/Winery.unity
+    guid: aabacee16316454caeca6abddbf9bda4
+  - enabled: 1
+    path: Assets/Scenes/RiceCakeShop.unity
+    guid: 5a4fe4b93cf748918284fb95c05b6301
   m_configObjects: {}

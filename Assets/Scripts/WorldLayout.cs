@@ -4,13 +4,13 @@ namespace YearEnd
 {
     public static class WorldLayout
     {
-        // Coordinates use a 100 x 64 map, origin at bottom left.
-        public static readonly string[] Scenes = { "ResearchRoom", "Outdoors", "Exhibition" };
+        public static readonly string[] Scenes = { "ResearchRoom", "Outdoors", "Exhibition", "BananaGarden", "Winery", "RiceCakeShop" };
         public static readonly Vector2[] ItemPositions = { new Vector2(29, 40), new Vector2(19, 44), new Vector2(78, 43), new Vector2(29, 16) };
         public static readonly Rect[][] Obstacles = {
             new [] { new Rect(0,51,100,13), new Rect(0,14,19,29), new Rect(6,45,19,12), new Rect(85,16,15,36), new Rect(0,0,43,12), new Rect(57,0,43,12) },
             new [] { new Rect(0,49,30,15), new Rect(65,49,35,15), new Rect(35,27,29,16), new Rect(0,4,22,20), new Rect(73,4,27,20), new Rect(0,0,43,9), new Rect(57,0,43,9) },
-            new [] { new Rect(0,51,100,13), new Rect(8,32,22,13), new Rect(70,32,24,13), new Rect(6,16,22,13), new Rect(73,16,21,13), new Rect(37,43,26,8), new Rect(0,0,43,10), new Rect(57,0,43,10) }
+            new [] { new Rect(0,51,100,13), new Rect(8,32,22,13), new Rect(70,32,24,13), new Rect(6,16,22,13), new Rect(73,16,21,13), new Rect(37,43,26,8), new Rect(0,0,43,10), new Rect(57,0,43,10) },
+            new Rect[0], new Rect[0], new Rect[0]
         };
         public static readonly Vector2[][] PatrolRoutes = {
             new [] { new Vector2(21,31), new Vector2(31,31), new Vector2(31,46), new Vector2(21,46) },
@@ -26,7 +26,6 @@ namespace YearEnd
         }
         public static Vector2 Move(int room, Vector2 from, Vector2 delta)
         {
-            // Substeps prevent tunnelling after frame stalls.
             int steps = Mathf.Max(1, Mathf.CeilToInt(delta.magnitude / .5f));
             Vector2 step = delta / steps;
             for (int i = 0; i < steps; i++)
